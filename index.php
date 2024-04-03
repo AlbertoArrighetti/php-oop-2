@@ -11,17 +11,16 @@ $cats = new Category('Cats', '<i class="fa-solid fa-cat"></i>');
 
 // prodotti
 $products = [
-    new Product('Pettorina', 20.99, true, '', [$dogs]),  
-    new Food('Crocchette per gatti', 14.99, true, '', [$cats], '2kg'),
-    new Toy('Pallina', 5.99, true, '', [$dogs, $cats], 'Rubber'),
+    new Product('Pettorina', 20.99, true, './img/prod-1.jpg', [$dogs]),  
+    new Food('Crocchette per gatti', 14.99, true, './img/prod-2.jpg', [$cats], '2kg'),
+    new Toy('Pallina', 5.99, true, './img/prod-3.jpg', [$dogs, $cats], 'Rubber'),
+    new Product('Guinzaglio', 30.00, true, './img/prod-4.jpg', [$dogs, $cats])
 ];
 
-
-var_dump($products);
 ?>
 
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,26 +33,41 @@ var_dump($products);
 
 </head>
 <body>
-    <h1>Title</h1>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand">PetShop</a>
+
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
 
     <div class="container my-5 ">
-        <ul class="row row-cols-3 ">
+        <ul class="row row-cols-3">
             <?php foreach ($products as $currentProducts) { ?>
                 <div class='card'>
 
-                    <img src='<?= $currentProducts->image ?>' class='card-img-top p-3'>
+                    <img src='<?= $currentProducts->image ?>' class='card-img-top p-3 h-100 '>
 
                     <div class='card-body pt-1'>
+                        <div class="d-flex justify-content-between">
+                            <h5 class='card-title mb-3'><?= $currentProducts->name ?></h5>
+    
+                            <div class="d-flex gap-1 ">
+                                <?php foreach($currentProducts->category as $currentCategory) { ?>
+                                <span class='card-title mb-3'><?= $currentCategory->icon ?></span>
+                                <?php } ?>
+                            </div>
+                        </div>
 
-                        <h5 class='card-title mb-3'><?= $currentProducts->name ?></h5>
-
-                        <?php foreach($currentProducts->category as $currentCategory) { ?>
-                        <h5 class='card-title mb-3'><?= $currentCategory->type ?></h5>
-                        <?php } ?>
                     
-                        <p class='card-text'><?= $currentProducts?->price ?></p>
+                        <div class='card-text mb-3 '><?= $currentProducts?->getPrice() ?></div>
                     
-                        <?= $currentProducts->getIconProduct() ?>
+                        <h6 class="d-flex justify-content-end text-success ">
+                            <?= $currentProducts->getIconProduct() ?>
+                        </h6>
                     </div>
                 </div>
             <?php } ?>

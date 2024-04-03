@@ -30,4 +30,8 @@ class Product {
     public function getIconProduct() {
         return '<i class="fa-solid fa-tag"></i>';
     }
+
+    public function getPrice() {
+        return "€ " . $this->price ;
+    }
 }
