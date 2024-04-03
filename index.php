@@ -1,5 +1,18 @@
 <?php
+require './Models/Category.php';
+require './Models/Product.php';
 
+// categorie
+$dogs = new Category('Dogs', '<i class="fa-solid fa-dog"></i>');
+$cats = new Category('Cats', '<i class="fa-solid fa-cat"></i>');
+
+// prodotti
+$products = [
+    new Product('Pettorina', 20.99, true, '', $dogs),
+];
+
+
+var_dump($products);
 ?>
 
 <!DOCTYPE html>
