@@ -6,7 +6,6 @@ class Product {
     public $precence;
     public $image;
 
-
     public $category;
     
     /**
@@ -16,9 +15,9 @@ class Product {
      * @param  int $_price
      * @param  bool $_precence
      * @param  string $_image
-     * @param  Category $_category
+     * @param  array $_category
      */
-    public function __construct($_name, $_price,  $_precence,  $_image, Category $_category ) {
+    public function __construct($_name, $_price,  $_precence,  $_image, array $_category ) {
         $this->name = $_name;
         $this->price = $_price;
         $this->precence = $_precence;
@@ -26,4 +25,6 @@ class Product {
 
         $this->category = $_category;
     }
+
+
 }

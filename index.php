@@ -1,6 +1,9 @@
 <?php
 require './Models/Category.php';
+
 require './Models/Product.php';
+require './Models/Food.php';
+require './Models/Toy.php';
 
 // categorie
 $dogs = new Category('Dogs', '<i class="fa-solid fa-dog"></i>');
@@ -8,7 +11,9 @@ $cats = new Category('Cats', '<i class="fa-solid fa-cat"></i>');
 
 // prodotti
 $products = [
-    new Product('Pettorina', 20.99, true, '', $dogs),
+    new Product('Pettorina', 20.99, true, '', [$dogs]),  
+    new Food('Crocchette per gatti', 14.99, true, '', [$cats], '2kg'),
+    new Toy('Pallina', 12.99, true, '', [$cats, $dogs], 'Rubber'),
 ];
 
 
