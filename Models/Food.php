@@ -20,4 +20,8 @@ class Food extends Product {
 
         $this->weight = $_weight;
     }
+
+    public function getIconProduct() {
+        return '<i class="fa-solid fa-bowl-food"></i>';
+    }
 }

@@ -20,4 +20,8 @@ class Toy extends Product {
 
         $this->material = $_material;
     }
+
+    public function getIconProduct() {
+        return '<i class="fa-solid fa-puzzle-piece"></i>';
+    }
 }
