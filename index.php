@@ -5,7 +5,6 @@ require './Models/Product.php';
 require './Models/Food.php';
 require './Models/Toy.php';
 
-
 require_once './Models/Customer.php';
 require_once './Models/PremiumCustomer.php';
 
@@ -22,7 +21,7 @@ $cats = new Category('Cats', '<i class="fa-solid fa-cat"></i>');
 
 $prod1 = new Product('Pettorina', 20.99, true, './img/prod-1.jpg', [$dogs]);
 $prod2 = new Food('Crocchette per gatti', 14.99, true, './img/prod-2.jpg', [$cats], '2kg');
-$prod3 = new Toy('Pallina', 5.99, true, './img/prod-3.jpg', [$dogs, $cats], 'Rubber');
+$prod3 = new Toy('Pallina', 5.99, true, './img/prod-3.jpg', [$dogs, $cats], 'Rubber', '50g');
 $prod4 = new Product('Guinzaglio', 30.00, true, './img/prod-4.jpg', [$dogs, $cats]);
 
 
@@ -96,8 +95,15 @@ $customer2->addToCart($prod2);
         </ul>
 
 
+        // visualizzazione a schermo delle differenze di utenti
         <div> <?php echo "Totale utente normale: " . $customer1->getCartTotal(); ?> </div> 
         <div> <?php echo "Totale utente premium: " . $customer2->getCartTotal(); ?> </div>
+
+
+        // utilizzo delle trails
+        <div>
+            <?php echo $prod2->getWeight() ?>
+        </div>
     </div>
 
     

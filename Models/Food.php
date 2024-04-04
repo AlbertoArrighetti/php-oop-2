@@ -1,8 +1,9 @@
 <?php
 
+require_once __DIR__ . './Traits/Heaviness.php';
 class Food extends Product {
     
-    public $weight;
+    use Haviness;
     
     /**
      * __construct
