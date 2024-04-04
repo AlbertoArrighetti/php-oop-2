@@ -5,17 +5,40 @@ require './Models/Product.php';
 require './Models/Food.php';
 require './Models/Toy.php';
 
+
+require_once './Models/Customer.php';
+require_once './Models/PremiumCustomer.php';
+
+
+
 // categorie
 $dogs = new Category('Dogs', '<i class="fa-solid fa-dog"></i>');
 $cats = new Category('Cats', '<i class="fa-solid fa-cat"></i>');
 
+
+
+
 // prodotti
+
+$prod1 = new Product('Pettorina', 20.99, true, './img/prod-1.jpg', [$dogs]);
+$prod2 = new Food('Crocchette per gatti', 14.99, true, './img/prod-2.jpg', [$cats], '2kg');
+$prod3 = new Toy('Pallina', 5.99, true, './img/prod-3.jpg', [$dogs, $cats], 'Rubber');
+$prod4 = new Product('Guinzaglio', 30.00, true, './img/prod-4.jpg', [$dogs, $cats]);
+
+
 $products = [
-    new Product('Pettorina', 20.99, true, './img/prod-1.jpg', [$dogs]),  
-    new Food('Crocchette per gatti', 14.99, true, './img/prod-2.jpg', [$cats], '2kg'),
-    new Toy('Pallina', 5.99, true, './img/prod-3.jpg', [$dogs, $cats], 'Rubber'),
-    new Product('Guinzaglio', 30.00, true, './img/prod-4.jpg', [$dogs, $cats])
+    $prod1, $prod2, $prod3, $prod4,
 ];
+
+
+// utenti
+$customer1 = new Customer('mario@gmail.com', 'Via Firenze');
+$customer1->addToCart($prod1);
+$customer1->addToCart($prod2);
+
+$customer2 = new PremiumCustomer('giorgio@gmail.com', 'Via Roma', 'giorgino');
+$customer2->addToCart($prod1);
+$customer2->addToCart($prod2);
 
 ?>
 
@@ -61,7 +84,6 @@ $products = [
                                 <?php } ?>
                             </div>
                         </div>
-
                     
                         <div class='card-text mb-3 '><?= $currentProducts?->getPrice() ?></div>
                     
@@ -72,6 +94,10 @@ $products = [
                 </div>
             <?php } ?>
         </ul>
+
+
+        <div> <?php echo "Totale utente normale: " . $customer1->getCartTotal(); ?> </div> 
+        <div> <?php echo "Totale utente premium: " . $customer2->getCartTotal(); ?> </div>
     </div>
 
     
