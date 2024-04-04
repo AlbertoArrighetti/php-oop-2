@@ -17,13 +17,19 @@ class Product {
      * @param  string $_image
      * @param  array $_category
      */
-    public function __construct($_name, $_price,  $_precence,  $_image, array $_category ) {
+    public function __construct($_name, $_price,  $_precence = true,  $_image, array $_category ) {
         $this->name = $_name;
-        $this->price = $_price;
         $this->precence = $_precence;
         $this->image = $_image;
 
         $this->category = $_category;
+
+        if (is_numeric($_price)) {
+            $this->price = $_price;
+        } else {
+            throw new Exception("Perfavore inserire un prezzo per l'oggetto.");
+            
+        }
     }
 
 
@@ -34,4 +40,7 @@ class Product {
     public function getPrice() {
         return "€ " . $this->price ;
     }
+
+
+
 }

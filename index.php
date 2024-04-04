@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require './Models/Category.php';
 
 require './Models/Product.php';
@@ -18,8 +22,18 @@ $cats = new Category('Cats', '<i class="fa-solid fa-cat"></i>');
 
 
 // prodotti
+$prod1;
+$error = null;
 
-$prod1 = new Product('Pettorina', 20.99, true, './img/prod-1.jpg', [$dogs]);
+try {
+    $prod1 = new Product('Pettorina', '', true, './img/prod-1.jpg', [$dogs]);
+} catch (Exception $e) {
+
+    $prod1 = new Product('Pettorina', 0, true, './img/prod-1.jpg', [$dogs]);
+    $error = 'Errore: ' . $e->getMessage();
+}
+
+
 $prod2 = new Food('Crocchette per gatti', 14.99, true, './img/prod-2.jpg', [$cats], '2kg');
 $prod3 = new Toy('Pallina', 5.99, true, './img/prod-3.jpg', [$dogs, $cats], 'Rubber', '50g');
 $prod4 = new Product('Guinzaglio', 30.00, true, './img/prod-4.jpg', [$dogs, $cats]);
@@ -95,15 +109,26 @@ $customer2->addToCart($prod2);
         </ul>
 
 
-        // visualizzazione a schermo delle differenze di utenti
+        <!-- visualizzazione a schermo delle differenze di utenti -->
         <div> <?php echo "Totale utente normale: " . $customer1->getCartTotal(); ?> </div> 
         <div> <?php echo "Totale utente premium: " . $customer2->getCartTotal(); ?> </div>
 
 
-        // utilizzo delle trails
+        <!-- utilizzo delle trails -->
         <div>
             <?php echo $prod2->getWeight() ?>
         </div>
+
+        <?php 
+            if ($error) {
+                ?>
+                    <div class="alert alert-danger" role="alert">
+                     <?= $error ?>
+                    </div>
+                <?php
+            }
+        ?>
+      
     </div>
 
     
